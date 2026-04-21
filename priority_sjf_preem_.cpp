@@ -7,7 +7,7 @@ struct Process {
     int id, at, bt, rt, ct, wt, tat, priority;
 };
 
-// 🔹 Print Result
+// Print 
 void printResult(vector<Process> &p) {
     cout << "\nID\tAT\tBT\tCT\tTAT\tWT\n";
     for (auto &pr : p) {
@@ -16,7 +16,9 @@ void printResult(vector<Process> &p) {
     }
 }
 
-// 🔹 Preemptive SJF (SRTF)
+//  preemptive SJF 
+
+
 void SJF_Preemptive(vector<Process> p, int n) {
     int complete = 0, time = 0;
 
@@ -51,11 +53,13 @@ void SJF_Preemptive(vector<Process> p, int n) {
         time++;
     }
 
-    cout << "\n--- Preemptive SJF ---\n";
+    cout << "\n--- preemptive SJF ---\n";
     printResult(p);
 }
 
-// 🔹 Non-Preemptive Priority Scheduling
+// non-preemptive priority scheduling
+
+
 void Priority_NonPreemptive(vector<Process> p, int n) {
     int complete = 0, time = 0;
     vector<bool> done(n, false);
@@ -64,7 +68,7 @@ void Priority_NonPreemptive(vector<Process> p, int n) {
         int highest_priority = INT_MAX;
         int index = -1;
 
-        // find highest priority process
+        
         for (int i = 0; i < n; i++) {
             if (!done[i] && p[i].at <= time &&
                 p[i].priority < highest_priority) {
@@ -79,7 +83,7 @@ void Priority_NonPreemptive(vector<Process> p, int n) {
             continue;
         }
 
-        // execute FULL burst (non-preemptive)
+        
         time += p[index].bt;
 
         p[index].ct = time;
@@ -90,11 +94,11 @@ void Priority_NonPreemptive(vector<Process> p, int n) {
         complete++;
     }
 
-    cout << "\n--- Non-Preemptive Priority Scheduling ---\n";
+    cout << "\n--- non-preemptive priority scheduling ---\n";
     printResult(p);
 }
 
-// 🔹 Main
+
 int main() {
     int n, choice;
 
@@ -107,13 +111,13 @@ int main() {
         cout << "\nProcess " << i + 1 << endl;
         p[i].id = i + 1;
 
-        cout << "Arrival Time: ";
+        cout << "arrival Time: ";
         cin >> p[i].at;
 
-        cout << "Burst Time: ";
+        cout << "burst Time: ";
         cin >> p[i].bt;
 
-        cout << "Priority: ";
+        cout << "priority: ";
         cin >> p[i].priority;
 
         p[i].rt = p[i].bt;
@@ -128,7 +132,7 @@ int main() {
     } else if (choice == 2) {
         Priority_NonPreemptive(p, n);
     } else {
-        cout << "Invalid Choice!\n";
+        cout << "invalid Choice!\n";
     }
 
     return 0;
